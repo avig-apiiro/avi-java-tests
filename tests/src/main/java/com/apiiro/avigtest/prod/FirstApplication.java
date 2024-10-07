@@ -1,13 +1,13 @@
-package com.apiiro.avigtest.tests;
+package com.apiiro.avigtest.prod;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TestsApplication {
+public class FirstApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TestsApplication.class, args);
+        SpringApplication.run(FirstApplication.class, args);
     }
 
 }
