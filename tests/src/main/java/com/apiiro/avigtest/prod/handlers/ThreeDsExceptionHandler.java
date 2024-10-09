@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 public class ThreeDsExceptionHandler {
+    private int counter = 1;
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.OK)
