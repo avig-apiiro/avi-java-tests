@@ -20,6 +20,14 @@
             <result type="redirectAction">Menu</result>
         </action>
 
+        <action name="boo" method="execute" class="com.apiiro.avigtest.example.Boo">
+            <result>/WEB-INF/example/boo.jsp</result>
+        </action>
+
+        <action name="goo" method="goo" class="com.apiiro.avigtest.example.Boo">
+            <result>/WEB-INF/example/goo.jsp</result>
+        </action>
+
         <action name="*" class="com.apiiro.avigtest.example.ExampleSupport">
             <result>/WEB-INF/example/{1}.jsp</result>
         </action>
