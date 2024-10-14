@@ -13,6 +13,8 @@ import java.util.Map;
 public class FooController {
 
 
+    public static final String PAUL = "/paul";
+
     @GetMapping(Constants.PARAMNAME_P1 + "/john")
     public Map<String, String> john(@PathVariable String p1) {
         Map<String, String> response = new HashMap<>();
@@ -20,7 +22,7 @@ public class FooController {
         return response;
     }
 
-    @GetMapping(Constants.PARAMNAME_P1 + "/paul")
+    @GetMapping(Constants.PARAMNAME_P1 + PAUL)
     public Map<String, String> paul(@PathVariable String p1) {
         Map<String, String> response = new HashMap<>();
         response.put("paul p1", p1);
