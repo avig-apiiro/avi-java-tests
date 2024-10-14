@@ -26,9 +26,16 @@ public class FirstController {
     }
 
     @GetMapping("/example/{" + Constants.PARAMNAME + "}")
-    public Map<String, String> getExample(@PathVariable String param) {
+    public Map<String, String> getExample(@PathVariable() String success) {
         Map<String, String> response = new HashMap<>();
-        response.put(Constants.PARAMNAME, param);
+        response.put(Constants.PARAMNAME, success);
+        return response;
+    }
+
+    @GetMapping("/example2/{" + Constants.PARAMNAME + "}")
+    public Map<String, String> getExample2(@PathVariable(Constants.PARAMNAME) String somevarname) {
+        Map<String, String> response = new HashMap<>();
+        response.put(Constants.PARAMNAME, somevarname);
         return response;
     }
 }
