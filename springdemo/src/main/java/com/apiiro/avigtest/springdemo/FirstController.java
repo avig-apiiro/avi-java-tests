@@ -13,7 +13,6 @@ import java.util.Map;
 public class FirstController {
 
 
-    public static final String PARAMNAME = "param";
 
     @GetMapping("/first")
     public String first() {
@@ -22,14 +21,14 @@ public class FirstController {
     @GetMapping("/path/{param}")
     public Map<String, String> pathparam(@PathVariable String param) {
         Map<String, String> response = new HashMap<>();
-        response.put(PARAMNAME, param);
+        response.put("param", param);
         return response;
     }
 
-    @GetMapping("/example/{" + PARAMNAME + "}")
+    @GetMapping("/example/{" + Constants.PARAMNAME + "}")
     public Map<String, String> getExample(@PathVariable String param) {
         Map<String, String> response = new HashMap<>();
-        response.put(PARAMNAME, param);
+        response.put(Constants.PARAMNAME, param);
         return response;
     }
 }
