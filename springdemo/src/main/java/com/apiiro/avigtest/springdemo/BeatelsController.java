@@ -10,7 +10,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/beatels")
-public class FooController {
+public class BeatelsController {
 
 
     public static final String PAUL = "/paul";
