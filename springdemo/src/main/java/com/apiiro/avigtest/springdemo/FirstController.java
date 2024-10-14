@@ -25,7 +25,7 @@ public class FirstController {
         return response;
     }
 
-    @GetMapping(value = "/example/" + Constants.PARAMNAME_BRACKETS)
+    @GetMapping(value = "/example" + Constants.PARAMNAME_BRACKETS)
     public Map<String, String> getExample(@PathVariable() String success) {
         Map<String, String> response = new HashMap<>();
         response.put(Constants.PARAMNAME, success);
