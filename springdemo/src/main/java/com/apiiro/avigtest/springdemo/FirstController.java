@@ -25,12 +25,6 @@ public class FirstController {
         return response;
     }
 
-    @GetMapping(value = "/example" + Constants.PARAMNAME_BRACKETS)
-    public Map<String, String> getExample(@PathVariable() String success) {
-        Map<String, String> response = new HashMap<>();
-        response.put(Constants.PARAMNAME, success);
-        return response;
-    }
 
     @GetMapping("/example2/{" + Constants.PARAMNAME + "}")
     public Map<String, String> getExample2(@PathVariable(Constants.PARAMNAME) String somevarname) {
@@ -39,11 +33,5 @@ public class FirstController {
         return response;
     }
 
-    @GetMapping( Constants.PARAMNAME_P1  + Constants.PARAMNAME_P2)
-    public Map<String, String> concatination(@PathVariable String p1, @PathVariable String p2) {
-        Map<String, String> response = new HashMap<>();
-        response.put("p1", p1);
-        response.put("p2", p2);
-        return response;
-    }
+
 }
