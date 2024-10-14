@@ -12,7 +12,6 @@ import java.util.Map;
 @RequestMapping("/beatels")
 public class BeatelsController {
 
-
     public static final String PAUL = "/paul";
 
     @GetMapping(Constants.PARAMNAME_P1 + "/john")
@@ -38,6 +37,6 @@ public class BeatelsController {
 
     @GetMapping( "/ringo" +  Constants.PARAMNAME_P1  + Constants.PARAMNAME_P2)
     public String ringo(@PathVariable String p1, @PathVariable String p2) {
-        return String.format("Ringo %s %s", p1 , p2);
+        return String.format("Ringo:  %s %s", p1 , p2);
     }
 }
