@@ -31,4 +31,9 @@ public class FooController {
         return new ResponseEntity<>(model.stream().map(m -> Integer.toString(m.val)).collect(Collectors.joining(",")), HttpStatus.OK);
 
     }
+
+    @GetMapping(value = {"/schemas/payment/{command}", "/schemas/payment"})
+    public ResponseEntity<?> foo(@Valid @RequestBody @Size(max = 5) Collection<SampleDTO> model) {
+        return new ResponseEntity<>(model.stream().map(m -> Integer.toString(m.val)).collect(Collectors.joining(",")), HttpStatus.OK);
+    }
 }
