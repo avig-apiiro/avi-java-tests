@@ -6,6 +6,7 @@ import spark.Service;
 
 public class GreetingRoute implements RouteBuilder {
 
+    private int i = 1;
     @Override
     public void configure(final Service spark, final String basePath) {
 
