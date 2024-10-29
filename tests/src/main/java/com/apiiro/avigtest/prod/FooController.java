@@ -36,4 +36,14 @@ public class FooController {
     public ResponseEntity<?> foo(@Valid @RequestBody @Size(max = 5) Collection<SampleDTO> model) {
         return new ResponseEntity<>(model.stream().map(m -> Integer.toString(m.val)).collect(Collectors.joining(",")), HttpStatus.OK);
     }
-}
+
+    @PostMapping(path = "")
+    public ResponseEntity<?> poo(@Valid @RequestBody @Size(max = 5) Collection<SampleDTO> model) {
+        return new ResponseEntity<>(model.stream().map(m -> Integer.toString(m.val)).collect(Collectors.joining(",")), HttpStatus.OK);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<String> pathparam(@Valid @PathVariable String id) {
+        return new ResponseEntity<>(id, HttpStatus.OK);
+
+    }
