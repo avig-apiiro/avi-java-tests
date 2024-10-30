@@ -15,7 +15,14 @@ public class FirstController {
     public String first() {
         return "hello world";
     }
-
+    @GetMapping({"/second", "/third", "/fourth"})
+    public String arraycheck() {
+        return "hello world";
+    }
+    @GetMapping(value = {"/2", "/3", "/4"})
+    public String arraycheck2() {
+        return "hello world";
+    }
     @GetMapping("{id}")
     public String funcget() {
         return "hello world with id";
