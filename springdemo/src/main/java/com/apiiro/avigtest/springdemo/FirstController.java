@@ -21,7 +21,7 @@ public class FirstController {
     }
     @GetMapping(value = {"/2", "/3", "/4"})
     public String arraycheck2() {
-        return "array check1 ";
+        return "array check2 ";
     }
     @GetMapping("{id}")
     public String funcget() {
