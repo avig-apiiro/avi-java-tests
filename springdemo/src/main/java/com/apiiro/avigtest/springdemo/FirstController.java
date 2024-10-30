@@ -19,7 +19,7 @@ public class FirstController {
     public String arraycheck() {
         return "hello world";
     }
-    @GetMapping(value = {"/2", "/3", "/4"})
+    @GetMapping(value = {"/2", "/3", "/5"})
     public String arraycheck2() {
         return "array check ";
     }
