@@ -29,7 +29,7 @@ public class BeatelsController {
     }
 
     @GetMapping(value = "/george" + Constants.PARAMNAME_BRACKETS)
-    public Map<String, String> getExample(@PathVariable() String success) {
+    public Map<String, String> george(@PathVariable() String success) {
         Map<String, String> response = new HashMap<>();
         response.put("George " + Constants.PARAMNAME, success);
         return response;
