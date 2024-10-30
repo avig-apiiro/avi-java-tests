@@ -23,7 +23,7 @@ public class FirstController {
 
     @PostMapping(path = "")
     public String empty() {
-        return "hello world";
+        return "hello world empty";
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
