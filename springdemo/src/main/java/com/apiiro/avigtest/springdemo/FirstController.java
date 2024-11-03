@@ -25,7 +25,7 @@ public class FirstController {
     }
     @GetMapping("{id}")
     public String funcget() {
-        return "hello world with id";
+        return "hello world with an id";
     }
 
     @PostMapping(path = "")
