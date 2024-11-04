@@ -1,4 +1,4 @@
-import mongoose, {Schema} from 'mongoose';
+import mongoose, {Schema} from 'ts/untitled/src/Lim.FeaturesExtractor.Node/tests/projects/TsProject/dataModelsPlayground/mongoose/mongoose';
 
 const userSchema = new Schema({
     _id: Schema.Types.ObjectId,

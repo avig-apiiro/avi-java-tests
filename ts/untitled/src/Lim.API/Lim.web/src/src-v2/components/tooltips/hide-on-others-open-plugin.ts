@@ -1,4 +1,4 @@
-import { Instance, Props } from 'tippy.js';
+import { Instance, Props } from 'ts/untitled/src/Lim.API/Lim.web/src/src-v2/components/tooltips/tippy.js';
 
 const allTooltipInstances = [] as Instance[];
 

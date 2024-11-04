@@ -3,7 +3,7 @@ import { TippyProps } from '@tippyjs/react';
 import _ from 'lodash';
 import { ReactNode, forwardRef, useMemo } from 'react';
 import styled from 'styled-components';
-import { Placement } from 'tippy.js';
+import { Placement } from 'ts/untitled/src/Lim.API/Lim.web/src/src-v2/components/tooltips/tippy.js';
 import { Tippy, TippyAttributes } from '@src-v2/components/tooltips/tippy';
 import { useGroupProperties } from '@src-v2/hooks';
 import { customScrollbar } from '@src-v2/style/mixins';

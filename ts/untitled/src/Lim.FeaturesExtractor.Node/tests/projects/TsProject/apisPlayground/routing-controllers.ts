@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, Post, Put} from "routing-controllers";
+import {Body, Controller, Delete, Get, Param, Post, Put} from "ts/untitled/src/Lim.FeaturesExtractor.Node/tests/projects/TsProject/apisPlayground/routing-controllers";
 
 @Controller()
 export class UserController {

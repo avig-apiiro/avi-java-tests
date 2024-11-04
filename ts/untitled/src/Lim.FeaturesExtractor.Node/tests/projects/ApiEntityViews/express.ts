@@ -1,4 +1,4 @@
-import express from 'express';
+import express from 'ts/untitled/src/Lim.FeaturesExtractor.Node/tests/projects/ApiEntityViews/express';
 
 const app = express();
 

@@ -1,5 +1,5 @@
 import bodyParser from 'body-parser';
-import express from 'express';
+import express from 'ts/untitled/src/Lim.FeaturesExtractor.Node/tests/projects/ApiLabels/express';
 
 const app = express();
 

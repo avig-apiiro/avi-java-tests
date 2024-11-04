@@ -1,4 +1,4 @@
-import Koa from 'koa';
+import Koa from 'ts/untitled/src/Lim.FeaturesExtractor.Node/tests/projects/TsProject/apisPlayground/koa';
 import bodyParser from 'koa-bodyparser';
 import Router from 'koa-router';
 
