@@ -1,0 +1,16 @@
+export type CodeParsingTarget =
+  | 'Properties'
+  | 'Java'
+  | 'Node'
+  | 'Terraform'
+  | 'Dotnet'
+  | 'Kotlin'
+  | 'Go'
+  | 'Python'
+  | 'Scala'
+  | 'Rust'
+  | 'Ruby'
+  | 'Dependencies'
+  | 'Semgrep'
+  | 'Secrets'
+  | 'Checkov';
