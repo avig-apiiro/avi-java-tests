@@ -29,6 +29,7 @@ public class FirstController {
     }
 
     @PostMapping(path = "")
+    @ResponseBody
     public String empty() {
         return "hello world empty";
     }
