@@ -12,7 +12,16 @@ import java.util.Map;
 @RequestMapping("/beatels")
 public class BeatelsController {
 
+    public static final String NUMBER = "/number";
+    public static final String NINE = "/9";
+    public static final String NUMBER_NINE =NUMBER + NINE;
+
     public static final String PAUL = "/paul";
+
+    @GetMapping(NUMBER_NINE)
+    public String nyumber9() {
+        return "number9";
+    }
 
     @GetMapping(Constants.PARAMNAME_P1 + "/john")
     public Map<String, String> john(@PathVariable String p1) {
