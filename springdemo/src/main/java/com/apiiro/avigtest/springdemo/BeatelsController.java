@@ -19,9 +19,15 @@ public class BeatelsController {
     public static final String PAUL = "/paul";
 
     @GetMapping(NUMBER_NINE)
-    public String nyumber9() {
+    public String number9() {
         return "number9 number9 number9";
     }
+    @GetMapping("/yellow" + "/submarine")
+    public String yellowSubmarine() {
+        return "yellow submarine";
+    }
+
+
 
     @GetMapping(Constants.PARAMNAME_P1 + "/john")
     public Map<String, String> john(@PathVariable String p1) {
