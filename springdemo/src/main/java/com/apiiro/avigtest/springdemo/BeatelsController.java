@@ -20,7 +20,7 @@ public class BeatelsController {
 
     @GetMapping(NUMBER_NINE)
     public String nyumber9() {
-        return "number9 number9";
+        return "number9 number9 number9";
     }
 
     @GetMapping(Constants.PARAMNAME_P1 + "/john")
