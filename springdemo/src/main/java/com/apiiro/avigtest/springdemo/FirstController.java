@@ -34,6 +34,11 @@ public class FirstController {
         return "hello world empty";
     }
 
+    @PostMapping(path = Constants.TST)
+    @ResponseBody
+    public String test() {
+        return "hello world";
+    }
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     @ExceptionHandler(MethodArgumentNotValidException.class)
