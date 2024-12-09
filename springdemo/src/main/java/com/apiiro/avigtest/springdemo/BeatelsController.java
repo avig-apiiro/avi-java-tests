@@ -27,8 +27,6 @@ public class BeatelsController {
         return "yellow submarine";
     }
 
-
-
     @GetMapping(Constants.PARAMNAME_P1 + "/john")
     public Map<String, String> john(@PathVariable String p1) {
         Map<String, String> response = new HashMap<>();
