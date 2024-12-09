@@ -11,6 +11,16 @@ import java.util.Map;
 @RestController("first")
 @RequestMapping("/api")
 public class FirstController {
+
+    public static final String API = "/b";
+    public static final String API_V1 = API + "/vv1";
+    public static final String PARTNERS = "/p";
+    public static final String PARTNER_ID = "/{partnerId}";
+    public static final String PARTNER = PARTNERS + PARTNER_ID;
+    public static final String BENEFITS = "/c";
+
+    public static final String TST = API_V1 + PARTNER + BENEFITS;
+
     @GetMapping("/first")
     public String first() {
         return "hello world";
@@ -36,7 +46,13 @@ public class FirstController {
 
     @PostMapping(path = Constants.TST)
     @ResponseBody
-    public String test() {
+    public String constadd() {
+        return "hello world";
+    }
+
+    @PostMapping(path = TST)
+    @ResponseBody
+    public String constadd2() {
         return "hello world";
     }
     @ResponseStatus(HttpStatus.BAD_REQUEST)
