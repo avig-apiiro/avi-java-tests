@@ -12,7 +12,7 @@ import java.util.Map;
 @RequestMapping("/api")
 public class FirstController {
 
-    public static final String API = "/b";
+    public static final String API = "/e";
     public static final String API_V1 = API + "/vv1";
     public static final String PARTNERS = "/p";
     public static final String PARTNER_ID = "/{partnerId}";
