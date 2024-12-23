@@ -50,11 +50,7 @@ public class FirstController {
         return "hello world";
     }
 
-    @PostMapping(path = TST)
-    @ResponseBody
-    public String constadd2() {
-        return "hello world";
-    }
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     @ExceptionHandler(MethodArgumentNotValidException.class)
