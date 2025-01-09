@@ -8,6 +8,7 @@ import java.io.IOException;
 
 public abstract class BaseServlet extends HttpServlet {
         @Override
+        @Deprecated
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             response.getWriter().println(this.work(request));
             response.setContentType("text/html");
