@@ -1,5 +1,8 @@
 syntax = "proto3";
 
+import "google/api/annotations.proto";
+
+
 option java_multiple_files = true;
 option java_package = "com.apiiro.avigtest.protoapi";
 
@@ -9,9 +12,21 @@ option objc_class_prefix = "HLW";
 package protoapi;
 
 service ProtoServer {
-  rpc GetPerson (PersonRequest) returns (Person) {}
-}
+  rpc GetPerson (PersonRequest) returns (Person) {
+    option (google.api.http) = {
+      get : "/url/{vr}"
+    };
 
+  }
+  rpc GetFullPerson (PersonRequest) returns (Person) {
+    option (google.api.http).post = "/v3/discovery:client_status";
+    option (google.api.http).body = "*";
+
+  }
+  rpc StreamClientStatus(stream PersonRequest) returns (stream Person) {
+
+  }
+}
 message PersonRequest {
   string name = 1;
 }
