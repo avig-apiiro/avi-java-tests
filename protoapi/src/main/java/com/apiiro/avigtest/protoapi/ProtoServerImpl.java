@@ -8,7 +8,18 @@ public class ProtoServerImpl extends ProtoServerSNGrpc.ProtoServerSNImplBase{
         super.getPerson(request, responseObserver);
     }
 
-    // with outer class name and multiple=false
+    @Override
+    public void getFullPerson(PersonRequest request, StreamObserver<Person> responseObserver) {
+        String email = getFullPerson(request.getName());
+        Person reply = Person.newBuilder().setName(request.getName()).setEmail(email).build();
+            responseObserver.onNext(reply);
+            responseObserver.onCompleted();
+    }
+
+    private String getFullPerson(String name) {
+        return "wazzaaaa";
+    }
+// with outer class name and multiple=false
 //    @Override
 //    public void getPerson(HelloWorldProto.PersonRequest request, StreamObserver<HelloWorldProto.Person> responseObserver) {
 //        super.getPerson(request, responseObserver);
