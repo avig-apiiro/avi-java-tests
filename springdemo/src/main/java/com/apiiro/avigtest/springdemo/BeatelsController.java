@@ -17,6 +17,7 @@ public class BeatelsController {
     public static final String NUMBER_NINE =NUMBER + NINE;
 
     public static final String PAUL = "/paul";
+    private UserManager userManager = new UserManager();
 
     @GetMapping(NUMBER_NINE)
     public String number9() {
@@ -28,10 +29,8 @@ public class BeatelsController {
     }
 
     @GetMapping(Constants.PARAMNAME_P1 + "/john")
-    public Map<String, String> john(@PathVariable String p1) {
-        Map<String, String> response = new HashMap<>();
-        response.put("John p1", p1);
-        return response;
+    public UserManager.User john(@PathVariable String p1) {
+        return userManager.getUser("John");
     }
 
     @GetMapping(Constants.PARAMNAME_P1 + PAUL)
