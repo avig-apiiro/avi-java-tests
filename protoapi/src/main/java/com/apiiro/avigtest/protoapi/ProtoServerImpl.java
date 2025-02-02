@@ -11,7 +11,10 @@ public class ProtoServerImpl extends ProtoServerSNGrpc.ProtoServerSNImplBase{
     @Override
     public void getFullPerson(PersonRequest request, StreamObserver<Person> responseObserver) {
         String email = getFullPerson(request.getName());
-        Person reply = Person.newBuilder().setName(request.getName()).setEmail(email).build();
+        Person reply = Person.newBuilder()
+            .setName(request.getName())
+            .setEmail(email)
+            .setUsername(request.getName()).build();
             responseObserver.onNext(reply);
             responseObserver.onCompleted();
     }
