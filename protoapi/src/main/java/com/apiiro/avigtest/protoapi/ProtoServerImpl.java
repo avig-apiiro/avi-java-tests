@@ -14,7 +14,9 @@ public class ProtoServerImpl extends ProtoServerSNGrpc.ProtoServerSNImplBase{
         Person reply = Person.newBuilder()
             .setName(request.getName())
             .setEmail(email)
-            .setUsername(request.getName()).build();
+            .setUsername(request.getName())
+            .setCreditCardNumber("1234")
+            .build();
             responseObserver.onNext(reply);
             responseObserver.onCompleted();
     }
