@@ -8,15 +8,19 @@ public class ProtoServerImpl extends ProtoServerSNGrpc.ProtoServerSNImplBase{
         super.getPerson(request, responseObserver);
     }
 
+    public Person buildPerson(String name, String email, String creditCard)
+    {
+        return Person.newBuilder()
+            .setName(name)
+            .setEmail(email)
+            .setUsername(name)
+            .setCreditCardNumber(creditCard)
+            .build();
+    }
     @Override
     public void getFullPerson(PersonRequest request, StreamObserver<Person> responseObserver) {
         String email = getFullPerson(request.getName());
-        Person reply = Person.newBuilder()
-            .setName(request.getName())
-            .setEmail(email)
-            .setUsername(request.getName())
-            .setCreditCardNumber("1234")
-            .build();
+        Person reply = buildPerson(request.getName(), email, "1234");
             responseObserver.onNext(reply);
             responseObserver.onCompleted();
     }
