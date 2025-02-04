@@ -4,19 +4,19 @@
 
   package com.apiiro.proto;
 
-  service ProtoServer1 {
-    rpc GetPerson (PersonRequest1) returns (Person1) {
+  service ProtoServerOne {
+    rpc GetPerson (PersonRequest1) returns (PersonResponse1) {
       option (google.api.http) = {
         get : "/url1"
       };
 
     }
-    rpc GetFullPerson (PersonRequest1) returns (Person1) {
+    rpc GetFullPerson (PersonRequest1) returns (PersonResponse1) {
       option (google.api.http).post = "/v1";
       option (google.api.http).body = "*";
 
     }
-    rpc StreamClientStatus(stream PersonRequest1) returns (stream Person1) {
+    rpc StreamClientStatus(stream PersonRequest1) returns (stream PersonResponse1) {
 
     }
   }
@@ -24,7 +24,7 @@
     string name = 1;
   }
 
-  message Person1 {
+  message PersonResponse1 {
     string name = 1;
     int32 id = 2;
     string email = 3;
