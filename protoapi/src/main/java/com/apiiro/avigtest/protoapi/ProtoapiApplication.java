@@ -20,7 +20,10 @@ public class ProtoapiApplication {
 
 
         server = Grpc.newServerBuilderForPort(5005, InsecureServerCredentials.create())
-                .addService(new ProtoServerImpl())
+                .addService(new ProtoServerImpl1())
+            .addService(new ProtoServerImpl2())
+            .addService(new ProtoServerImpl3())
+            .addService(new ProtoServerImpl4())
                 .build()
                 .start();
 
