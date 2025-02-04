@@ -31,5 +31,6 @@
     string username = 4;
     string ownerName = 5;
     string creditCardNumber = 6;
+    string address = 7;
   }
 

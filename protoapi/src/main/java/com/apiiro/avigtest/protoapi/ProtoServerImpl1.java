@@ -24,6 +24,7 @@ public class ProtoServerImpl1 extends ProtoServerOneGrpc.ProtoServerOneImplBase 
             .setName(name)
             .setEmail(email)
             .setUsername(name)
+            .setAddress("Home")
             .setCreditCardNumber(creditCard)
             .build();
     }
