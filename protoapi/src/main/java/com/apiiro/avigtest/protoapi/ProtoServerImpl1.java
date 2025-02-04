@@ -1,8 +1,8 @@
 package com.apiiro.avigtest.protoapi;
 
 import io.grpc.stub.StreamObserver;
-import protoapi.ProtoServer1Grpc;
-import protoapi.Server1;
+import com.apiiro.proto.ProtoServer1Grpc;
+import com.apiiro.proto.Server1;
 
 public class ProtoServerImpl1 extends ProtoServer1Grpc.ProtoServer1ImplBase {
     @Override

@@ -2,7 +2,7 @@
 
   import "google/api/annotations.proto";
 
-  package protoapi;
+  package com.apiiro.proto;
 
   service ProtoServer1 {
     rpc GetPerson (PersonRequest1) returns (Person1) {
