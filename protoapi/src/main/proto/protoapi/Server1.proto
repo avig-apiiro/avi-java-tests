@@ -26,6 +26,7 @@
 
   message PersonResponse1 {
     string name = 1;
+    int32 id =2;
     string email = 3;
     string username = 4;
     string ownerName = 5;
