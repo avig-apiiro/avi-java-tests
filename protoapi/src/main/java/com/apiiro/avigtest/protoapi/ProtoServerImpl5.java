@@ -25,4 +25,11 @@ public class ProtoServerImpl5 extends ProtoServer5Grpc.ProtoServer5ImplBase {
             .setCreditCardNumber(creditCard)
             .build();
     }
+
+
+
+    @Override
+    public StreamObserver<PersonRequest5> streamClientStatus(StreamObserver<Person5> responseObserver) {
+        return super.streamClientStatus(responseObserver);
+    }
 }

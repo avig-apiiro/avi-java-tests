@@ -19,7 +19,8 @@ service ProtoServer5{
 
   }
   rpc StreamClientStatus(stream PersonRequest5) returns (stream Person5) {
-
+    option (google.api.http).post = "/sv5";
+    option (google.api.http).body = "*";
   }
 }
 message PersonRequest5 {
