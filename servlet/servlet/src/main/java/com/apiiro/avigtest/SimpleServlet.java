@@ -12,6 +12,8 @@ public class SimpleServlet extends HttpServlet {
         response.getWriter().close();
     }
 
+
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
