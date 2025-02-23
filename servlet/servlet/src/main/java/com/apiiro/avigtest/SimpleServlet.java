@@ -7,7 +7,7 @@ import java.io.IOException;
 public class SimpleServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getWriter().println("Hello World 4");
+        response.getWriter().println("https://api.github.com/test");
         response.setContentType("text/html");
         response.getWriter().close();
     }
