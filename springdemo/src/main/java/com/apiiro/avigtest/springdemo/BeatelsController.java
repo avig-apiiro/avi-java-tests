@@ -1,10 +1,9 @@
 package com.apiiro.avigtest.springdemo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.apiiro.avigtest.springdemo.utils.CloudinaryUploader;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +23,9 @@ public class BeatelsController {
         return "number9 number9 number9";
     }
     @GetMapping("/yellow" + "/submarine")
-    public String yellowSubmarine() {
+    public String yellowSubmarine(@RequestParam("value") String value) throws IOException {
+        var cu =  new CloudinaryUploader("cloudName", "api-key", "api-secret");
+        cu.uploadImage(value);
         return "yellow submarine";
     }
 
