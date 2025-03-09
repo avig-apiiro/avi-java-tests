@@ -25,6 +25,7 @@ public class BeatelsController {
     @GetMapping("/yellow" + "/submarine")
     public String yellowSubmarine(@RequestParam("value") String value) throws IOException {
         var cu =  new CloudinaryUploader("cloudName", "api-key", "api-secret");
+        String aws_url = "https:\\s3.us-east1.amazonaws.com\test";
         cu.uploadImage(value);
         return "yellow submarine";
     }
