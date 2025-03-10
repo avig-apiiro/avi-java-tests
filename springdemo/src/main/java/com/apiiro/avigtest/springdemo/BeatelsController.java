@@ -24,7 +24,7 @@ public class BeatelsController {
     }
 
     @GetMapping(ConstClass.R3)
-    public String gereComesTheSun() {
+    public String hereComesTheSun() {
         return "tididam";
     }
 
