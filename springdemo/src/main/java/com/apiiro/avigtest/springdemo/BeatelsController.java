@@ -27,7 +27,7 @@ public class BeatelsController {
         return "number9 number9 number9";
     }
 
-    @GetMapping(Routes.ABBEY_ROAD)
+    @RequestMapping(value = {Routes.ABBEY_ROAD}, method = RequestMethod.POST, produces = "application/json")
     public String abbeyRoad() {
         return "and in the end the love you take is equal to the love you make";
     }
