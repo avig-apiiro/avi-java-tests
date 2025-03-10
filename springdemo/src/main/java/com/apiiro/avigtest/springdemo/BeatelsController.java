@@ -11,6 +11,10 @@ import  com.apiiro.avigtest.ConstClass;
 @RequestMapping("/beatels")
 public class BeatelsController {
 
+    public static final class Routes {
+        public static final String ABBEY_ROAD = "/abbey_road";
+    }
+
     public static final String NUMBER = "/number";
     public static final String NINE = "/9";
     public static final String NUMBER_NINE =NUMBER + NINE;
@@ -23,9 +27,9 @@ public class BeatelsController {
         return "number9 number9 number9";
     }
 
-    @GetMapping(ConstClass.R3)
-    public String hereComesTheSun() {
-        return "tididam";
+    @GetMapping(Routes.ABBEY_ROAD)
+    public String abbeyRoad() {
+        return "and in the end the love you take is equal to the love you make";
     }
 
 
