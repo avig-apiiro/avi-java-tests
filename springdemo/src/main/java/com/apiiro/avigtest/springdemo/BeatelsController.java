@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
+import  com.apiiro.avigtest.ConstClass;
 @RestController
 @RequestMapping("/beatels")
 public class BeatelsController {
@@ -22,6 +22,13 @@ public class BeatelsController {
     public String number9() {
         return "number9 number9 number9";
     }
+
+    @GetMapping(ConstClass.R3)
+    public String gereComesTheSun() {
+        return "tididam";
+    }
+
+
     @GetMapping("/yellow" + "/submarine")
     public String yellowSubmarine(@RequestParam("value") String value) throws IOException {
         var cu =  new CloudinaryUploader("cloudName", "api-key", "api-secret");
