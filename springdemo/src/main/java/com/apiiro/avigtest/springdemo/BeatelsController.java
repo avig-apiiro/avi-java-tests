@@ -1,18 +1,21 @@
 package com.apiiro.avigtest.springdemo;
 
 import com.apiiro.avigtest.springdemo.utils.CloudinaryUploader;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import io.swagger.annotations.ApiParam;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import  com.apiiro.avigtest.ConstClass;
 @RestController
-@RequestMapping("/beatels")
+@RequestMapping(value = {"/beatels"})
 public class BeatelsController {
 
     public static final class Routes {
         public static final String ABBEY_ROAD = "/abbey_road";
+        @Deprecated(forRemoval = true, since = "123") public static final String HEY_JUDE = "/hey/jude/{recordId}";
+
     }
 
     public static final String NUMBER = "/number";
@@ -32,6 +35,14 @@ public class BeatelsController {
         return "and in the end the love you take is equal to the love you make";
     }
 
+    @RequestMapping(value = Routes.HEY_JUDE, method = RequestMethod.POST, produces = "application/json")
+    @Deprecated(forRemoval = true, since = "20240702")
+
+    public ResponseEntity<String> heyJude(@ApiParam(value = "call record id", required = true)
+        @PathVariable("recordId") String recordId,
+                                     @RequestBody String transfer) {
+        return  new ResponseEntity<String>("na na na na na nananananana", HttpStatusCode.valueOf(200));
+    }
 
     @GetMapping("/yellow" + "/submarine")
     public String yellowSubmarine(@RequestParam("value") String value) throws IOException {
