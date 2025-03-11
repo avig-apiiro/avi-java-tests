@@ -1,5 +1,4 @@
 package com.apiiro.avigtest.springdemo;
-
 import com.apiiro.avigtest.springdemo.utils.CloudinaryUploader;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +7,8 @@ import io.swagger.annotations.ApiParam;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import static com.apiiro.avigtest.springdemo.Constants.Internal.TWIST_AND_SHOUT;
+
 @RestController
 @RequestMapping(value = {"/beatels"})
 public class BeatelsController {
@@ -34,6 +35,12 @@ public class BeatelsController {
     public String abbeyRoad() {
         return "and in the end the love you take is equal to the love you make";
     }
+
+    @PostMapping(TWIST_AND_SHOUT )
+    public String twistAndShout() {
+        return "Well, shake it up, baby";
+    }
+
 
     @RequestMapping(value = Routes.HEY_JUDE, method = RequestMethod.POST, produces = "application/json")
     @Deprecated(forRemoval = true, since = "20240702")

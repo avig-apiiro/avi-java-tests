@@ -14,4 +14,9 @@ public class Constants {
     public static final String BENEFITS = "/c";
 
     public static final String TST = API_V1 + PARTNER + BENEFITS;
+
+    public static class Internal {
+        private static final String TWIST = "/twist";
+        public static final String TWIST_AND_SHOUT = TWIST + "/shout";
+    }
 }
