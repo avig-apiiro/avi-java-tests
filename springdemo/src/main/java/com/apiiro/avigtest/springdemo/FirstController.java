@@ -46,7 +46,7 @@ public class FirstController {
 
     @PostMapping(path = Constants.TST)
     @ResponseBody
-    public String constadd() {
+    public String constpath() {
         return "hello world";
     }
 
