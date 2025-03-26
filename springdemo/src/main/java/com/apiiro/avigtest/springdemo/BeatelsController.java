@@ -80,6 +80,8 @@ public class BeatelsController {
 
     @GetMapping( "/ringo" +  Constants.PARAMNAME_P1  + Constants.PARAMNAME_P2)
     public String ringo(@PathVariable String p1, @PathVariable String p2) {
-        return String.format("Ringo:  %s %s", p1 , p2);
+        String aws_url = "https:\\s3.us-east1.amazonaws.com\test3";
+
+        return String.format("Ringo star:  %s %s", p1 , p2);
     }
 }
