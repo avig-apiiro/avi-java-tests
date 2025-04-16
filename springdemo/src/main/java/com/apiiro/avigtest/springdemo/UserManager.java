@@ -40,6 +40,6 @@ public class UserManager {
     }
 
     public User getUser(String name) {
-        return new User(name.hashCode(), name, "user"+name, "1239", name+"@email.com");
+        return new User(name.hashCode(), name, "user"+name, "1249", name+"@email.com");
     }
 }
