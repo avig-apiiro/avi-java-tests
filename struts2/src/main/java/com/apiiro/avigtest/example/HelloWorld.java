@@ -48,6 +48,10 @@ public class HelloWorld extends ExampleSupport {
         return message;
     }
 
+	public int getX(){
+return 3;
+}
+
     /**
      * Set Message property.
      *
