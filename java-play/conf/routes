@@ -5,7 +5,7 @@
 GET     /play                           controllers.HomeController.index()
 POST    /play/post                      controllers.HomeController.index()
 POST    /business/*val                  controllers.HomeController.business()
-POST    /pleasure/*val                  @controllers.WorkController.index(partial: String)
+POST    /pleasure/*val                  @controllers.WorkController.index(partial: String, param2: String)
 
 
 # Map static resources from the /public folder to the /assets URL path
