@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import org.springframework.data.*;
+import javax.ws.rs.*;
+
 
 public class UnusedServlet extends HttpServlet {
     @Override
@@ -20,5 +22,10 @@ public class UnusedServlet extends HttpServlet {
         response.getWriter().println("UNUSED22");
         response.setContentType("text/html");
         response.getWriter().close();
+    }
+
+    @Path("/path")
+    public void pathMethod(){
+
     }
 }
