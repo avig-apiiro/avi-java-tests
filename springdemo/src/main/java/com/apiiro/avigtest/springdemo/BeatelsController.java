@@ -66,6 +66,7 @@ public class BeatelsController {
 
     @GetMapping(Constants.PARAMNAME_P1 + PAUL)
     public Map<String, String> paul(@PathVariable String p1) {
+        userManager.getUser(PAUL);
         Map<String, String> response = new HashMap<>();
         response.put("Paul p1", p1);
         return response;
@@ -78,6 +79,13 @@ public class BeatelsController {
         return response;
     }
 
+    @GetMapping("/heyJude")
+    public Map<String, String> heyJude(@PathVariable String p1) {
+        userManager.getUser("Paul");
+        Map<String, String> response = new HashMap<>();
+        response.put("na", "na na nananananana");
+        return response;
+    }
     @GetMapping( "/ringo" +  Constants.PARAMNAME_P1  + Constants.PARAMNAME_P2)
     public String ringo(@PathVariable String p1, @PathVariable String p2) {
         String aws_url = "https:\\s3.us-east1.amazonaws.com\test3";
