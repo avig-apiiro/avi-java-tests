@@ -90,9 +90,9 @@ public class BeatelsController {
 
     @GetMapping("/iamtheWarlus")
     public Map<String, String> iamthewarlus(@PathVariable String p1) {
-        AnotherUserManager.AnotherUser u = anotherUserManager.getUser("Paul");
+        AnotherUser u = anotherUserManager.getUser("Paul");
         Map<String, String> response = new HashMap<>();
-        response.put("i", "am the eggman");
+        response.put("i", u.getEmail());
         return response;
     }
 

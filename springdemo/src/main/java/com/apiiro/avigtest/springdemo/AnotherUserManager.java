@@ -1,44 +1,27 @@
 package com.apiiro.avigtest.springdemo;
-
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 public class AnotherUserManager {
-    public static class AnotherUser {
-        int id;
-        String name;
-        String userName;
-        String creditCardNumber;
-
-        String email;
-
-        public AnotherUser(int id, String name, String userName, String creditCardNumber, String email) {
-            this.id = id;
-            this.name = name;
-            this.userName = userName;
-            this.creditCardNumber = creditCardNumber;
-            this.email = email;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getUserName() {
-            return userName;
-        }
-
-        public String getCreditCardNumber() {
-            return creditCardNumber;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-    }
 
     public AnotherUser getUser(String name) {
-        return new AnotherUser(name.hashCode(), name, "user"+name, "1249", name+"@email.com");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.apiiro.avigtest.springdemo");
+        EntityManager em = emf.createEntityManager();
+
+        // --- Store a new user ---
+        em.getTransaction().begin();
+        AnotherUser user = new AnotherUser(name.hashCode(), name, "user"+name, "1249", name+"@email.com");
+        em.persist(user);
+        em.getTransaction().commit();
+
+        System.out.println("Saved User ID = " + user.getId());
+
+        // --- Read it back ---
+        AnotherUser found = em.find(AnotherUser.class, user.getId());
+        System.out.println("Found User: " + found.getName());
+
+        em.close();
+        emf.close();
+        return user;
     }
 }
