@@ -1,0 +1,217 @@
+---
+schemaVersion: 1.0.0
+notify:
+  slack:
+    channelName: ops
+applications:
+  - name: beatels
+    key: beatels
+    description: test app
+    teamRostersProductId: 1
+    organization: AbbyRoad
+    businessCriticality: MINOR
+    communication:
+      slack:
+        - channel: ops
+    companyCatalog: true
+    members:
+      - homeoffice\v0r001
+    environments:
+      - name: dev
+        type: DEVELOPMENT
+        description: Dev environment
+        externalCatalog: false
+        serviceType: REST
+        wcnpProximity: true
+        consumerIdInfos:
+          - consumerId: 11111111-2222-3333-4444-55555555
+            publicKey: 0000
+        consumers:
+          - applicationKey: DATAHUB_BFF
+            environment: dev
+        policies:
+          - name: ApplicationAuthentication
+          - name: DenyUnsubscribedConsumerRequest
+        serviceMeshConfig:
+          deploymentType: WCNP
+          defaultIngressConfig:
+            requestTimeout: 100000
+            maxConnectionIdle: 600000
+            maxConnections: 10
+            retries: 5
+            consecutiveFailures: 10
+          ingressListeners:
+            - protocol: HTTP
+              applicationHost: 127.0.0.1
+              applicationPort: 8080
+              enablePolicyEngine: true
+              passthroughURIs:
+                - uri: /.*
+                  methods:
+                    - OPTIONS
+                    - GET
+                - uri: "/actuator/prometheus"
+                  methods:
+                    - GET
+                - uri: "/actuator/health"
+                  methods:
+                    - GET
+                - uri: "/health-check"
+                  methods:
+                    - GET
+                - uri: "/actuator/health/livenessState"
+                  methods:
+                    - GET
+                - uri: "/actuator/health/readinessState"
+                  methods:
+                    - GET
+                - uri: "/beatels/.*"
+                  methods:
+                    - GET
+                    - POST
+                    - PUT
+                    - DELETE
+                - uri: "/swagger-ui/index.html"
+                  methods:
+                    - GET
+                    - OPTIONS
+                - uri: "/v3/api-docs/.*"
+                  methods:
+                    - GET
+                    - OPTIONS
+                - uri: "/v3/api-docs"
+                  methods:
+                    - GET
+                    - OPTIONS
+      - name: stage
+        type: STAGING
+        description: Stage environment
+        externalCatalog: false
+        serviceType: REST
+        wcnpProximity: true
+        consumerIdInfos:
+          - consumerId: 11111111-2222-3333-4444-66666666
+            publicKey: 00
+        consumers:
+          - applicationKey: DATAHUB_BFF
+            environment: dev
+        policies:
+          - name: ApplicationAuthentication
+          - name: DenyUnsubscribedConsumerRequest
+        serviceMeshConfig:
+          deploymentType: WCNP
+          defaultIngressConfig:
+            requestTimeout: 100000
+            maxConnectionIdle: 600000
+            maxConnections: 10
+            retries: 5
+            consecutiveFailures: 10
+          ingressListeners:
+            - protocol: HTTP
+              applicationHost: 127.0.0.1
+              applicationPort: 8080
+              enablePolicyEngine: true
+              passthroughURIs:
+                - uri: /.*
+                  methods:
+                    - OPTIONS
+                    - GET
+                - uri: "/actuator/prometheus"
+                  methods:
+                    - GET
+                - uri: "/actuator/health"
+                  methods:
+                    - GET
+                - uri: "/health-check"
+                  methods:
+                    - GET
+                - uri: "/actuator/health/livenessState"
+                  methods:
+                    - GET
+                - uri: "/actuator/health/readinessState"
+                  methods:
+                    - GET
+                - uri: "/beatels/.*"
+                  methods:
+                    - GET
+                    - POST
+                    - PUT
+                    - DELETE
+                - uri: "/swagger-ui/index.html"
+                  methods:
+                    - GET
+                    - OPTIONS
+                - uri: "/v3/api-docs/.*"
+                  methods:
+                    - GET
+                    - OPTIONS
+                - uri: "/v3/api-docs"
+                  methods:
+                    - GET
+                    - OPTIONS
+      - name: prod
+        type: PRODUCTION
+        description: prod environment
+        externalCatalog: false
+        serviceType: REST
+        wcnpProximity: true
+        consumerIdInfos:
+          - consumerId: 11111111-2222-3333-4444-77777777
+            publicKey: 0000
+        consumers:
+          - applicationKey: DATAHUB_BFF
+            environment: prod
+        policies:
+          - name: ApplicationAuthentication
+          - name: DenyUnsubscribedConsumerRequest
+        serviceMeshConfig:
+          deploymentType: WCNP
+          defaultIngressConfig:
+            requestTimeout: 100000
+            maxConnectionIdle: 600000
+            maxConnections: 10
+            retries: 5
+            consecutiveFailures: 10
+          ingressListeners:
+            - protocol: HTTP
+              applicationHost: 127.0.0.1
+              applicationPort: 8080
+              enablePolicyEngine: true
+              passthroughURIs:
+                - uri: /.*
+                  methods:
+                    - OPTIONS
+                    - GET
+                - uri: "/actuator/prometheus"
+                  methods:
+                    - GET
+                - uri: "/actuator/health"
+                  methods:
+                    - GET
+                - uri: "/health-check"
+                  methods:
+                    - GET
+                - uri: "/actuator/health/livenessState"
+                  methods:
+                    - GET
+                - uri: "/actuator/health/readinessState"
+                  methods:
+                    - GET
+                - uri: "/beatels/.*"
+                  methods:
+                    - GET
+                    - POST
+                    - PUT
+                    - DELETE
+                - uri: "/swagger-ui/index.html"
+                  methods:
+                    - GET
+                    - OPTIONS
+                - uri: "/v3/api-docs/.*"
+                  methods:
+                    - GET
+                    - OPTIONS
+                - uri: "/v3/api-docs"
+                  methods:
+                    - GET
+                    - OPTIONS
