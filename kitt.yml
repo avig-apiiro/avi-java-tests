@@ -34,9 +34,7 @@ build:
   attributes:
     mvnGoals: "clean install -DconcordProcessId=${concordProcessId} -DbuildUrl=${BUILD_URL} -DlooperId=${LOOPER_RUN_ID}"
     jdkVersion: 21
-    mavenExtraArgs: "-Dmaven.repo.local=${WS_ROOT}/.m2/repository -e -V -B -fae
-    -Dsonar.projectVersion={{ $.kitt.build.version }}
-    -Dsonar.cpd.${language}.minimumtokens"
+    mavenExtraArgs: "-Dmaven.repo.local=${WS_ROOT}/.m2/repository -e -V -B -fae"
 
 setup:
   releaseRefs: [main,main_backup,dev_new,feature,feature_lean,jdk17,jdk17_without_kafka,dev,price_uat]
