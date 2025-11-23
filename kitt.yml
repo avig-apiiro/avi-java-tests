@@ -319,7 +319,22 @@ deploy:
         values:
           scaling:
             enabled: "true"
-              -Dccm.configs.dir=/etc/config
+            cpuPercent: 65
+            max: 10
+            min: 2
+          min:
+            cpu: 2000m
+            memory: 4Gi
+            ephemeralStorage: 5Gi
+          max:
+            cpu: 3000m
+            memory: 5Gi
+            ephemeralStorage: 5Gi
+          metadata:
+            labels:
+              strati.env: PROD
+              wm.env: PROD
+              ccm.serviceConfigVersion: "1.0-PROD"
       approvers:
         groups:
           - approvers
