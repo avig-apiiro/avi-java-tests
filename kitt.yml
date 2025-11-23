@@ -255,20 +255,6 @@ deploy:
                 automatonConfig:
                   flow: management_api
                   user: ${initiator.username}
-            name: R2C
-            enabled: true
-            arguments:
-              config:
-                spec:
-                  apiSpecUrl: ''
-                  specPath: 'api-spec.json'
-                contractTest:
-                  cname: "https://pricing"
-                  threshHold: 70
-                  mode: Active
-                  appName: management-service
-                  exclude:
-                    tags: ["skip-contract-test"]
       approvers:
         groups:
           - hw
