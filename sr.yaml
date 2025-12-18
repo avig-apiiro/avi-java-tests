@@ -153,7 +153,7 @@ applications:
         type: PRODUCTION
         description: prod environment
         externalCatalog: false
-        serviceType: REST
+        serviceType: WCNP
         wcnpProximity: true
         consumerIdInfos:
           - consumerId: 11111111-2222-3333-4444-77777777
