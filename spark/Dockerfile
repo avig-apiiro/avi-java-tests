@@ -1,22 +1,9 @@
-### BUILDER IMAGE ###
-FROM maven:3-jdk-11-slim as builder
+FROM ubuntu:latest
 
-COPY pom.xml /build/
+RUN apt-get update && apt-get install -y curl
 
-RUN mvn --file build/pom.xml --batch-mode package
-
-COPY src /build/src/
-
-RUN mvn --file build/pom.xml --batch-mode package -DskipTests
-
-
-### PRODUCTION IMAGE ###
-FROM openjdk:11-jre-slim
-
-COPY --from=builder build/target/app-*.jar app/app.jar
+COPY . /app
 
 WORKDIR /app
 
-EXPOSE 4567
-
-CMD ["java", "-jar", "app.jar"]
+CMD ["bash"]
