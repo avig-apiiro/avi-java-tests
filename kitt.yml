@@ -1,0 +1,324 @@
+owner:
+  group: hw
+
+profiles:
+  - springboot-web
+
+alerts:
+  slackChannel:
+    - "pricing"
+
+notify:
+  slack:
+    channelName: "notify"
+
+build:
+  postBuild:
+    - concord:
+        name: SonarQube Validator
+        enabled: true
+        arguments:
+          config:
+            sonarCheck:
+              projectKey: 'p'
+              threshold: 85
+              mode: Active
+  artifact: managementservice
+  buildType: maven
+  docker:
+    app:
+      buildArgs:
+        artifactPath: managementservice/target
+        mvnGoals: "clean deploy -U"
+      runtime: tomcat
+  attributes:
+    mvnGoals: "clean install -DconcordProcessId=${concordProcessId} -DbuildUrl=${BUILD_URL} -DlooperId=${LOOPER_RUN_ID}"
+    jdkVersion: 21
+    mavenExtraArgs: "-Dmaven.repo.local=${WS_ROOT}/.m2/repository -e -V -B -fae"
+
+setup:
+  releaseRefs: [main,main_backup,dev_new,feature,feature_lean,jdk17,jdk17_without_kafka,dev,price_uat]
+  featureFlagMap:
+    enableIstioSidecar: true
+    enableStrictMtls: true
+    isGoldenSignalGateEnabled: true
+    buildWhenStageRefMatches: true
+    useArtifactory: true
+    skipSonar: false
+
+deploy:
+  namespace: hw
+  useTempNamespace: false
+  changeRecord:
+    type: auto
+    group: "AD"
+    managerGroup: "Change Managers - US"
+    affectedGEOs: [ "US" ]
+    businessUnits: [ "Home Office" ]
+    notifyChannels: [ "pricing" ]
+    primaryCI: "1"
+    affectedCIClass: "Business Application"
+    category: "Application"
+    risk: "4"
+    impact: "3"
+  gslb:
+    strategy: stage
+    lbRoutings:
+      dev:
+        cnames: [ pricing ]
+      qa:
+        cnames: [ pricing ]
+      stg:
+        cnames: [ pricing ]
+      prod:
+        cnames: [ hw ]
+
+  releaseType:
+    strategy: normal
+    rollbackOnError: true
+    waitForReady: true
+    deployTimeout: 1400
+  helm:
+    values:
+      env:
+        CURRENT_STAGE: "{{$.kittExec.currentStage.name}}"
+        ARTIFACT_VERSION: "{{$.kitt.build.version}}"
+        DYNATRACE_ENABLED: false
+      container:
+        repository: docker
+        policy: Always
+      startupProbe:
+        path: "/health"
+        timeout: 4
+        failureThreshold: 10
+        probeInterval: 10
+        wait: 30
+        enabled: "true"
+      livenessProbe:
+        wait: 180
+        path: "/health"
+        timeout: 4
+        failureThreshold: 5
+        enabled: "true"
+      readinessProbe:
+        wait: 240
+        path: "/pricing-mgmt/v1/deep-health"
+        timeout: 4
+        failureThreshold: 5
+        enabled: "true"
+      deployStrategy:
+        enabled: false
+      metadata:
+        labels:
+          strati.appkey: HW
+          wm.app: HW
+          ccm.serviceId: "HW-PRICING-MANAGEMENT-SERVICE"
+          ccm.serviceConfigVersion: "1.0-NON-PROD"
+          ## Default CCM
+          ccm.envProfile: "{{$.kittExec.currentCluster.profile}}"
+          ccm.envName: "{{$.kittExec.currentStage.name}}"
+          ccm.region: "{{$.kittExec.currentCluster.region}}"
+          ccm.cluster: "{{$.kittExec.currentCluster.clusterId}}"
+          ccm.namespace: "{{$.kitt.deploy.namespace}}"
+          ccm.deploymentContext: "{{$.kittExec.currentStage.name}}"
+          ccm.clusterprovider: "{{$.kittExec.currentCluster.provider}}"
+          ccm.zone: "{{$.kittExec.currentCluster.site}}"
+          ccm.consumerContext: "{{$.kitt.build.artifact}}"
+          ccm.providerContext: "{{$.kitt.build.artifact}}"
+          ## Resolution paths
+          ccm.platform: "ALL"
+          ccm.environment: "ALL"
+          ccm.country: "ALL"
+          ccm.ringId: "1"
+          ccm.dc: "ALL"
+          ccm.dblk: "ALL"
+          ccm.store: "ALL"
+          ccm.site: "{{$.kittExec.currentCluster.site}}"
+        annotations:
+          strati.passthroughUris: '[{"Path": "^/swagger-ui.html$"},{"Path": "^/webjars/.*$"},{"Path": "^/swagger-resources$"},{"Path": "^/swagger-resources/.*$"},{"Path": "^/v1/api.docs$"},{"Path": "^/v2/api.docs$"},{"Path": "^/prometheus"},{"Path": "^/metrics"},{"Path": "^/beatels/.*$"}]'
+          sidecar.istio.io/proxyCPU: 1000m
+          sidecar.istio.io/proxyCPULimit: 1000m
+          sidecar.istio.io/proxyMemory: 512M
+          sidecar.istio.io/proxyMemoryLimit: 512M
+      secrets:
+        akeyless: true
+        config:
+          akeyless:
+            path: "/Prod/WCNP/homeoffice/hw-pricing-prod"
+        files:
+          - destination: pricing-mgmt-service.json
+            content: pricing-mgmt/{{$.kittExec.currentStage.name}}#pricing-mgmt-service
+          - destination: svc_key.json
+            content: pricing-mgmt/{{$.kittExec.currentStage.name}}#svc_key
+          - destination: svc_key2.json
+            content: pricing-mgmt/{{$.kittExec.currentStage.name}}#svc_key2
+        file_refresh: false
+      strategy:
+        rollingUpdate:
+          maxSurge: 50%
+          maxUnavailable: 50%
+        type: RollingUpdate
+      global:
+        tls:
+          minProtocolVersion: TLSV1_0
+        metrics:
+          enabled: true
+          remoteWriteSampleLimit: 50
+          whitelistenabled: true
+          endpoints:
+            - targetPort: 8080
+              path: "/prometheus"
+            - targetPort: 7766
+              path: "/metrics"
+      networking:
+        httpEnabled: true
+        httpsEnabled: true
+        httpsRedirect: true
+        externalPort: 8080
+        internalPort: 8080
+        pathPrefix: /
+        ports:
+          http:
+            internalPort: 8080
+            externalPort: 8080
+            protocol: TCP
+          strati-metrics:
+            internalPort: 7766
+            externalPort: 7766
+            protocol: TCP
+  stages:
+    - name: dev
+      flows: [ release ]
+      target:
+        - cluster_id: [ uscentral-1 ]
+      helm:
+        values:
+          scaling:
+            enabled: "true"
+            cpuPercent: 65
+            max: 2
+            min: 1
+          min:
+            cpu: 1200m
+            memory: 3Gi
+            ephemeralStorage: 5Gi
+          max:
+            cpu: 1500m
+            memory: 4Gi
+            ephemeralStorage: 5Gi
+          metadata:
+            labels:
+              strati.env: Dev
+              wm.env: Dev
+            annotations:
+              sidecar.istio.io/inject: "false"
+      approvers:
+        groups:
+          - hw-pricing-excellence
+    - name: qa
+      flows: [ release ]
+      target:
+        - cluster_id: [ stage ]
+      helm:
+        values:
+          scaling:
+            enabled: "true"
+            cpuPercent: 65
+            max: 3
+            min: 1
+          min:
+            cpu: 405m
+            memory: 4Gi
+          max:
+            cpu: 2500m
+            memory: 4.5Gi
+          metadata:
+            annotations:
+              sidecar.istio.io/inject: "false"
+            labels:
+              strati.env: QA
+              wm.env: QA
+      postDeploy:
+        - task:
+            name: messageSlack
+            text: "Triggering perf test for {{$.kitt.build.artifact}} in {{$.kittExec.currentStage.name}} environment"
+        - concord:
+            name: Automaton
+            enabled: true
+            sync: false
+            arguments:
+              config:
+                git:
+                  orgName: '{{$.kitt.build.commitEvent.repo.org}}'
+                  repoName: '{{$.kitt.build.commitEvent.repo.name}}'
+                  branchName: '{{$.kitt.build.commitEvent.currentBranch}}'
+                automatonConfig:
+                  flow: management_api
+                  user: ${initiator.username}
+      approvers:
+        groups:
+          - hw
+    - name: stg
+      flows: [ release ]
+      target:
+        - cluster_id: [ stage ]
+      helm:
+        values:
+          scaling:
+            enabled: "true"
+            cpuPercent: 65
+            max: 2
+            min: 1
+          min:
+            cpu: 2
+            memory: 1Gi
+          max:
+            cpu: 2
+            memory: 1Gi
+          metadata:
+            labels:
+              strati.env: STG
+              wm.env: STG
+      approvers:
+        groups:
+          - hw
+      postDeploy:
+        - task:
+            name: messageSlack
+            text: "Triggering karate test suite for {{$.kitt.build.artifact}} in {{$.kittExec.currentStage.name}} environment"
+        - concord:
+            name: trigger-integration-test
+            action: start
+            org: hw_devops
+            project: hw-devops-assets
+            repo: integration_testing
+            sync: true
+            suspend: true
+            entryPoint: APIBasedTrigger
+    - name: prod
+      flows: [ release ]
+      target:
+        - cluster_id: [ uscentral-prod-az-hipaa001 ]
+      helm:
+        values:
+          scaling:
+            enabled: "true"
+            cpuPercent: 65
+            max: 10
+            min: 2
+          min:
+            cpu: 2000m
+            memory: 4Gi
+            ephemeralStorage: 5Gi
+          max:
+            cpu: 3000m
+            memory: 5Gi
+            ephemeralStorage: 5Gi
+          metadata:
+            labels:
+              strati.env: PROD
+              wm.env: PROD
+              ccm.serviceConfigVersion: "1.0-PROD"
+      approvers:
+        groups:
+          - approvers

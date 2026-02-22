@@ -23,7 +23,7 @@ public class SampleController {
     @RequestMapping(path = "startlesson.mvc", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView start() {
         var model = new ModelAndView();
-        int i=6;
+        int i=7;
 
         model.addObject("course", "c");
         model.addObject("lesson", "l");
