@@ -7,7 +7,13 @@
     <groupId>com.apiiro.avigtest</groupId>
     <artifactId>constlib</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.openai</groupId>
+            <artifactId>openai-java</artifactId>
+            <version>4.22.0</version>
+        </dependency>
+    </dependencies>
     <properties>
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
