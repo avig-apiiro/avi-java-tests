@@ -36,7 +36,7 @@ public class CryptoPasswordBased {
         // Derive a secret key from the password using PBKDF2
         String PASSWORD_SIGNATURE_ALGORITHM = "PBKDF2WithHmacSHA256";
         String PASSWORD_SIGNATURE_AND_ENCRYPTION_ALGO = "PBEWithHmacSHA256AndAES_256";
-        SecretKeyFactory factory = SecretKeyFactory.getInstance(PASSWORD_SIGNATURE_ALGORITHM);
+        SecretKeyFactory factory = SecretKeyFactory.getInstance(PASSWORD_SIGNATURE_AND_ENCRYPTION_ALGO);
         SecretKeyFactory.getInstance("PBEWithHmacSHA256AndAES_256");
         PBEKeySpec keySpec = new PBEKeySpec(
             password.toCharArray(),
