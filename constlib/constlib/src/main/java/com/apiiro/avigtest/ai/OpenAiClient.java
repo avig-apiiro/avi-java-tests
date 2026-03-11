@@ -1,4 +1,4 @@
-package main.java.com.apiiro.avigtest.ai;
+package com.apiiro.avigtest.ai;
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
 import com.openai.models.ChatModel;
