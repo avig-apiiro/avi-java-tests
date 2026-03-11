@@ -31,6 +31,6 @@ public class GeminiClient
         GenerateContentResponse response1 = chat.sendMessage("My name is Alice.");
         System.out.println(response1.text());
         GenerateContentResponse response2 = chat.sendMessage("What is my name?");
-        System.out.println(response2.text()); /
+        System.out.println(response2.text());
     }
 }
