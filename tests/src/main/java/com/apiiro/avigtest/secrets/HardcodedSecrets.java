@@ -9,8 +9,8 @@ public class HardcodedSecrets {
     private static final String AWS_ACCESS_KEY_ID     = "AKIAIOSFODNN7EXAMPLEKEY";
     private static final String AWS_SECRET_ACCESS_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY1";
 
-    // Secret 2: Hardcoded database password
-    private static final String DB_PASSWORD = "Sup3rS3cr3tDbP@ssw0rd!";
+    // Secret 2: Database password — loaded from environment variable (Apiiro remediation applied)
+    private static final String DB_PASSWORD = System.getenv("DB_PASSWORD");
 
     // Secret 3: Hardcoded database URL with credentials embedded
     private static final String DB_URL = "jdbc:postgresql://prod-db.internal:5432/appdb?user=admin&password=ProdDbPass123!";
