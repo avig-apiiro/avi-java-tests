@@ -8,8 +8,6 @@ import java.security.SecureRandom;
 import java.security.spec.ECGenParameterSpec;
 import java.security.spec.X509EncodedKeySpec;
 
-import static sun.security.ec.ECOperations.Secp256R1GeneratorMontgomeryMultiplier.generator;
-
 public final class EcExample {
     private static final SecureRandom RNG = new SecureRandom();
 
