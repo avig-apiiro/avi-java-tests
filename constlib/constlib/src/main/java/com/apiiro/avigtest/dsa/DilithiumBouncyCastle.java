@@ -1,0 +1,34 @@
+package com.apiiro.avigtest.dsa;
+
+import org.bouncycastle.pqc.jcajce.spec.DilithiumParameterSpec;
+
+import java.nio.charset.StandardCharsets;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.SecureRandom;
+import java.security.Signature;
+
+public final class DilithiumBouncyCastle {
+
+    private static final SecureRandom RNG = new SecureRandom();
+
+    public static boolean run() throws Exception {
+        Providers.register();
+
+        KeyPairGenerator generator = KeyPairGenerator.getInstance("Dilithium", Providers.BCPQC);
+        generator.initialize(DilithiumParameterSpec.dilithium3, RNG);
+        KeyPair pair = generator.generateKeyPair();
+
+        byte[] message = "The quick brown fox".getBytes(StandardCharsets.UTF_8);
+
+        Signature signer = Signature.getInstance("Dilithium", Providers.BCPQC);
+        signer.initSign(pair.getPrivate());
+        signer.update(message);
+        byte[] signature = signer.sign();
+
+        Signature verifier = Signature.getInstance("Dilithium", Providers.BCPQC);
+        verifier.initVerify(pair.getPublic());
+        verifier.update(message);
+        return verifier.verify(signature);
+    }
+}

@@ -1,4 +1,4 @@
-package main.java.com.apiiro.avigtest;
+package com.apiiro.avigtest;
 
 import java.security.KeyFactory;
 import java.security.KeyPair;
