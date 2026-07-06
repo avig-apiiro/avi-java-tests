@@ -7,6 +7,8 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.SecureRandom;
 import java.security.Signature;
+import org.bouncycastle.pqc.jcajce.provider.BouncyCastlePQCProvider;
+
 
 public final class SphincsPlusBouncyCastle {
 
@@ -15,7 +17,7 @@ public final class SphincsPlusBouncyCastle {
     public static boolean run() throws Exception {
         Providers.register();
 
-        KeyPairGenerator generator = KeyPairGenerator.getInstance("SPHINCSPlus", Providers.BCPQC);
+        KeyPairGenerator generator = KeyPairGenerator.getInstance("SPHINCSPlus", BouncyCastlePQCProvider.PROVIDER_NAME);
         generator.initialize(SPHINCSPlusParameterSpec.sha2_128s, RNG);
         KeyPair pair = generator.generateKeyPair();
 

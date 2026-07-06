@@ -7,7 +7,7 @@ import java.security.SecureRandom;
 import java.security.Signature;
 import java.security.spec.ECGenParameterSpec;
 
-public final class Gost3410BouncyCastle {
+    public final class Gost3410BouncyCastle {
 
     private static final SecureRandom RNG = new SecureRandom();
 

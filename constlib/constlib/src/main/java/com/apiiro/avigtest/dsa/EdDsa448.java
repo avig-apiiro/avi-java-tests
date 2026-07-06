@@ -5,13 +5,10 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.Signature;
 
-public final class EdDsaJava {
-    static String algorithm = "Ed25519";
-    public static boolean run() throws Exception {
-        return sign();
-    }
+public class EdDsa448 {
+    static String algorithm = "Ed448";
 
-    private static boolean sign() throws Exception {
+    public static boolean sign() throws Exception {
         KeyPairGenerator generator = KeyPairGenerator.getInstance(algorithm);
         KeyPair pair = generator.generateKeyPair();
 

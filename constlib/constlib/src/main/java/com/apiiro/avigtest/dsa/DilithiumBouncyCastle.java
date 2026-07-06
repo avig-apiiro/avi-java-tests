@@ -1,7 +1,7 @@
 package com.apiiro.avigtest.dsa;
 
 import org.bouncycastle.pqc.jcajce.spec.DilithiumParameterSpec;
-
+import org.bouncycastle.jce.provider.BouncyCastlePQCProvider;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -15,7 +15,7 @@ public final class DilithiumBouncyCastle {
     public static boolean run() throws Exception {
         Providers.register();
 
-        KeyPairGenerator generator = KeyPairGenerator.getInstance("Dilithium", Providers.BCPQC);
+        KeyPairGenerator generator = KeyPairGenerator.getInstance("Dilithium", BouncyCastlePQCProvider.PROVIDER_NAME);
         generator.initialize(DilithiumParameterSpec.dilithium3, RNG);
         KeyPair pair = generator.generateKeyPair();
 

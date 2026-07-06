@@ -1,5 +1,6 @@
 package com.apiiro.avigtest.dsa;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.jcajce.spec.SLHDSAParameterSpec;
 
 import java.nio.charset.StandardCharsets;
@@ -15,7 +16,7 @@ public final class SlhDsaBouncyCastle {
     public static boolean run() throws Exception {
         Providers.register();
 
-        KeyPairGenerator generator = KeyPairGenerator.getInstance("SLH-DSA", Providers.BC);
+        KeyPairGenerator generator = KeyPairGenerator.getInstance("SLH-DSA", BouncyCastleProvider.PROVIDER_NAME);
         generator.initialize(SLHDSAParameterSpec.slh_dsa_sha2_128s, RNG);
         KeyPair pair = generator.generateKeyPair();
 
