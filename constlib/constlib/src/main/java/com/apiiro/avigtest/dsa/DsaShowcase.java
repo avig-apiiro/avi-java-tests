@@ -31,7 +31,7 @@ public final class DsaShowcase {
         map.put("EdDSA (Java)", EdDsaJava::run);
         map.put("RSASSA-PSS (Java)", RsaPssJava::run);
         map.put("ECDSA (BouncyCastle)", EcDsaBouncyCastle::run);
-        map.put("EdDSA (BouncyCastle)", EdDsaBouncyCastle::run);
+        map.put("EdDSA (BouncyCastle)", EdDsa448::run);
         map.put("SM2 (BouncyCastle)", Sm2BouncyCastle::run);
         map.put("GOST 34.10-2012 (BC)", Gost3410BouncyCastle::run);
         map.put("ML-DSA (BouncyCastle)", MlDsaBouncyCastle::run);

@@ -8,7 +8,7 @@ import java.security.Signature;
 public class EdDsa448 {
     static String algorithm = "Ed448";
 
-    public static boolean sign() throws Exception {
+    public static boolean run() throws Exception {
         KeyPairGenerator generator = KeyPairGenerator.getInstance(algorithm);
         KeyPair pair = generator.generateKeyPair();
 
