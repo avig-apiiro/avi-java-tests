@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import com.apiiro.annotation.MyAuth;
 @RestController("first")
 @RequestMapping("/api")
 public class FirstController {
@@ -22,17 +22,22 @@ public class FirstController {
     public static final String TST = API_V1 + PARTNER + BENEFITS;
 
     @GetMapping("/first")
+    @MyAuth
     public String first() {
         return "hello world";
     }
+    @MyAuth
     @GetMapping({"/second", "/third", "/fourth"})
     public String arraycheck() {
         return "hello world";
     }
+    @MyAuth
     @GetMapping(value = {"/2", "/3", "/4"})
     public String arraycheck2() {
         return "array check9";
     }
+
+    @MyAuth
     @GetMapping("{id}")
     public String funcget() {
         return "hello world with an id";
