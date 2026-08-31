@@ -15,7 +15,7 @@ import static com.apiiro.avigtest.springdemo.Constants.Internal.TWIST_AND_SHOUT;
 public class BeatelsController {
 
     public static final class Routes {
-        public static final String ABBEY_ROAD = "/abbey_road";
+        public static final String ABBEY_ROAD = "/abbey__road";
         @Deprecated(forRemoval = true, since = "123") public static final String HEY_JUDE = "/hey/jude/{recordId}";
 
     }
@@ -31,7 +31,7 @@ public class BeatelsController {
     @GetMapping(NUMBER_NINE)
     @MyAuth
     public String number9() {
-        return "number9 number9 number9";
+        return "number9 number9 number9 number9";
     }
 
     @RequestMapping(value = {Routes.ABBEY_ROAD}, method = RequestMethod.POST, produces = "application/json")
