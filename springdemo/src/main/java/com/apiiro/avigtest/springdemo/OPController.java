@@ -6,15 +6,19 @@ import com.apiiro.avigtest.ConstClass;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.apiiro.annotation.MyAuth;
 
 @Controller
 @RequestMapping(path="/aaa")
 public class OPController {
+
+    @MyAuth
     @GetMapping(ConstClass.R1)
     public String funcget() {
         return "hello world";
     }
 
+    @MyAuth
     @GetMapping(ConstClass.R2)
     public String funcget2() {
         return "hello world2";
@@ -22,6 +26,7 @@ public class OPController {
 
 
     @GetMapping(ConstClass.R3)
+    @MyAuth
     public String funcget3(@PathVariable String p1) {
         return "hello world3"+p1;
     }
