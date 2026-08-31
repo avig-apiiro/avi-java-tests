@@ -7,8 +7,8 @@ import io.swagger.annotations.ApiParam;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import static com.apiiro.avigtest.springdemo.Constants.Internal.TWIST_AND_SHOUT;
 import com.apiiro.annotation.MyAuth;
+import static com.apiiro.avigtest.springdemo.Constants.Internal.TWIST_AND_SHOUT;
 
 @RestController
 @RequestMapping(value = {"/beatels"})
