@@ -55,6 +55,13 @@ public class FirstController {
         return "hello world";
     }
 
+    private String describeRequestSource(String channel) {
+        if (channel == null || channel.isEmpty()) {
+            return "unknown";
+        }
+        return channel.trim().toLowerCase();
+    }
+
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
