@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.apiiro.avigtest</groupId>
+    <artifactId>sca-risks</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>sca-risks</name>
+    <description>
+        SCA test module — 20 dependencies with known Critical/High/Medium CVEs.
+        Used for Apiiro diff-scan SCA risk detection testing.
+    </description>
+
+    <dependencies>
+
+        <!-- SCA Risk 1: Log4j 2.14.1 — CVE-2021-44228 (Log4Shell) CRITICAL CVSS 10.0
+             Remote Code Execution via JNDI lookup in log messages -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.14.1</version>
+        </dependency>
+
+        <!-- SCA Risk 2: Spring Framework 5.3.0 — CVE-2022-22965 (Spring4Shell) CRITICAL CVSS 9.8
+             Remote Code Execution via data binding on JDK 9+ with Tomcat -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.3.0</version>
+        </dependency>
+
+        <!-- SCA Risk 3: Apache Commons Text 1.9 — CVE-2022-42889 (Text4Shell) CRITICAL CVSS 9.8
+             RCE via StringSubstitutor interpolation with script/dns/url lookups -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.9</version>
+        </dependency>
+
+        <!-- SCA Risk 4: Apache Commons Collections 3.2.1 — CVE-2015-7501 CRITICAL CVSS 9.8
+             RCE via Java deserialization of crafted payloads (gadget chain) -->
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
+        <!-- SCA Risk 5: Jackson-databind 2.9.8 — CVE-2019-14439 CRITICAL CVSS 9.8
+             Remote code execution via polymorphic type handling (enableDefaultTyping) -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.8</version>
+        </dependency>
+
+        <!-- SCA Risk 6: H2 Database 1.4.200 — CVE-2021-42392 CRITICAL CVSS 9.8
+             RCE via JNDI lookup in H2 console and JDBC URL -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+        </dependency>
+
+        <!-- SCA Risk 7: XStream 1.4.15 — CVE-2021-21341 CRITICAL CVSS 9.8
+             RCE via unsafe deserialization of crafted XML input -->
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.15</version>
+        </dependency>
+
+        <!-- SCA Risk 8: Netty 4.1.42 — CVE-2019-20444 CRITICAL CVSS 9.8
+             HTTP request smuggling via whitespace in Transfer-Encoding header -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-codec-http</artifactId>
+            <version>4.1.42.Final</version>
+        </dependency>
+
+        <!-- SCA Risk 9: Apache Tomcat Embed 9.0.30 — CVE-2020-1938 (Ghostcat) CRITICAL CVSS 9.8
+             AJP connector allows file read / RCE on misconfigured servers -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>9.0.30</version>
+        </dependency>
+
+        <!-- SCA Risk 10: SnakeYAML 1.27 — CVE-2022-25857 HIGH CVSS 7.5
+             Denial of service via stack overflow during YAML parsing -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.27</version>
+        </dependency>
+
+        <!-- SCA Risk 11: Spring Security 5.3.4 — CVE-2020-5408 MEDIUM CVSS 6.5
+             Insecure use of SecureRandom seed leaks encoded passwords via encode() -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+            <version>5.3.4.RELEASE</version>
+        </dependency>
+
+        <!-- SCA Risk 12: Hibernate Core 5.4.18 — CVE-2020-25638 HIGH CVSS 7.4
+             SQL injection via HQL query parameter when using non-default configuration -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.18.Final</version>
+        </dependency>
+
+        <!-- SCA Risk 13: Apache Shiro 1.4.1 — CVE-2019-12422 HIGH CVSS 7.5
+             Authentication bypass via specially crafted "remember me" cookie -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>1.4.1</version>
+        </dependency>
+
+        <!-- SCA Risk 14: Gson 2.8.6 — CVE-2022-25647 HIGH CVSS 7.5
+             Denial of service via stack overflow in Gson deserialization -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
+        </dependency>
+
+        <!-- SCA Risk 15: Bouncy Castle 1.64 — CVE-2020-26939 MEDIUM CVSS 5.3
+             Non-constant-time comparison of PKCS#1 v1.5 padding in RSA decryption -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.64</version>
+        </dependency>
+
+        <!-- SCA Risk 16: Apache HttpClient 4.5.9 — CVE-2020-13956 MEDIUM CVSS 5.3
+             Incorrect handling of malformed authority component in request URI -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.9</version>
+        </dependency>
+
+        <!-- SCA Risk 17: Woodstox 6.2.3 — CVE-2022-40152 HIGH CVSS 7.5
+             Denial of service via stack overflow during XML document parsing -->
+        <dependency>
+            <groupId>com.fasterxml.woodstox</groupId>
+            <artifactId>woodstox-core</artifactId>
+            <version>6.2.3</version>
+        </dependency>
+
+        <!-- SCA Risk 18: Guava 29.0-jre — CVE-2020-8908 LOW CVSS 3.3
+             Temporary directory created with insecure permissions (world-readable) -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
+
+        <!-- SCA Risk 19: Apache Struts2 2.5.25 — CVE-2021-31805 CRITICAL CVSS 9.8
+             RCE via forced OGNL evaluation in tag attributes when using forced evaluation -->
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-core</artifactId>
+            <version>2.5.25</version>
+        </dependency>
+
+        <!-- SCA Risk 20: Spring Boot 2.6.0 — CVE-2022-22950 MEDIUM CVSS 6.5
+             DoS via crafted Spring Expression Language (SpEL) expression -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
