@@ -1,0 +1,579 @@
+openapi: 3.0.3
+info:
+  title: Avi Java Tests API
+  description: Specification covering the HTTP endpoints implemented across the Java modules in this repository.
+  version: 1.4.0
+servers:
+  - url: https://api.example.com
+    description: Primary
+tags:
+  - name: first
+  - name: op
+  - name: beatels
+  - name: foo
+  - name: sample
+  - name: feedback
+  - name: servlet
+  - name: play
+  - name: spark
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+  schemas:
+    SampleDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    Person:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+    Greeting:
+      type: object
+      properties:
+        message:
+          type: string
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+    StringMap:
+      type: object
+      additionalProperties:
+        type: string
+paths:
+  /api/first:
+    get:
+      tags: [first]
+      operationId: first
+      summary: First sample endpoint
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  /api/second:
+    get:
+      tags: [first]
+      operationId: second
+      summary: Second sample endpoint
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /api/third:
+    get:
+      tags: [first]
+      operationId: third
+      summary: Third sample endpoint
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /api/fourth:
+    get:
+      tags: [first]
+      operationId: fourth
+      summary: Fourth sample endpoint
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /api/2:
+    get:
+      tags: [first]
+      operationId: numericTwo
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /api/3:
+    get:
+      tags: [first]
+      operationId: numericThree
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /api/4:
+    get:
+      tags: [first]
+      operationId: numericFour
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /api/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [first]
+      operationId: getById
+      summary: Fetch a record by identifier
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /api:
+    post:
+      tags: [first]
+      operationId: createEmpty
+      summary: Create with an empty path
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /api/a/v1/p/{partnerId}/c:
+    parameters:
+      - name: partnerId
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [first]
+      operationId: constPath
+      responses:
+        '200':
+          description: OK
+  /aaa/r1:
+    get:
+      tags: [op]
+      operationId: opR1
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /aaa/r2/{p1}:
+    parameters:
+      - name: p1
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [op]
+      operationId: opR2
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /aaa/r1/r2/{p1}:
+    parameters:
+      - name: p1
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [op]
+      operationId: opR1R2
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /beatels/number/9:
+    get:
+      tags: [beatels]
+      operationId: numberNine
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /beatels/abbey__road:
+    post:
+      tags: [beatels]
+      operationId: abbeyRoad
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+  /beatels/twist/shout:
+    post:
+      tags: [beatels]
+      operationId: twistAndShout
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /beatels/hey/jude/{recordId}:
+    parameters:
+      - name: recordId
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [beatels]
+      operationId: heyJude
+      summary: Transfer a record
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: OK
+  /beatels/yellow/submarine:
+    get:
+      tags: [beatels]
+      operationId: yellowSubmarine
+      summary: Submarine lookup
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: colour
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /beatels/{p1}/john:
+    parameters:
+      - name: p1
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [beatels]
+      operationId: john
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /beatels/{p1}/paul:
+    parameters:
+      - name: p1
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [beatels]
+      operationId: paul
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringMap'
+  /beatels/george/{success}:
+    parameters:
+      - name: success
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [beatels]
+      operationId: george
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /beatels/heyJude:
+    get:
+      tags: [beatels]
+      operationId: heyJudeLookup
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /beatels/iamtheWarlus:
+    get:
+      tags: [beatels]
+      operationId: iAmTheWalrus
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /beatels/ringo/{p1}/{p2}:
+    parameters:
+      - name: p1
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: p2
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [beatels]
+      operationId: ringo
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+  /api/v1/foo/app/address:
+    post:
+      tags: [foo]
+      operationId: addressVerification
+      summary: Verify a batch of addresses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SampleDTO'
+      responses:
+        '200':
+          description: OK
+  /api/v1/foo/app/schemas/payment/{command}:
+    parameters:
+      - name: command
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [foo]
+      operationId: paymentSchemaByCommand
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SampleDTO'
+      responses:
+        '200':
+          description: OK
+  /api/v1/foo/app/schemas/payment:
+    get:
+      tags: [foo]
+      operationId: paymentSchema
+      responses:
+        '200':
+          description: OK
+  /api/v1/foo/app:
+    post:
+      tags: [foo]
+      operationId: fooCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/SampleDTO'
+      responses:
+        '200':
+          description: OK
+  /api/v1/foo/app/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [foo]
+      operationId: fooById
+      responses:
+        '200':
+          description: OK
+  /api/v1/foo/app/legacy-export:
+    get:
+      tags: [foo]
+      operationId: legacyExport
+      summary: Export legacy records
+      description: Retained for downstream consumers; no longer implemented in code.
+      deprecated: true
+      parameters:
+        - name: since
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: OK
+  /tests/startlesson.mvc:
+    get:
+      tags: [sample]
+      operationId: startLessonGet
+      responses:
+        '200':
+          description: OK
+    post:
+      tags: [sample]
+      operationId: startLessonPost
+      responses:
+        '200':
+          description: OK
+  /tests/other/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [sample]
+      operationId: sampleOther
+      responses:
+        '200':
+          description: OK
+  /feedback/submit:
+    post:
+      tags: [feedback]
+      operationId: sendFeedback
+      summary: Submit user feedback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: OK
+  /c:
+    get:
+      tags: [servlet]
+      operationId: servletThirdGet
+      deprecated: true
+      responses:
+        '200':
+          description: OK
+    post:
+      tags: [servlet]
+      operationId: servletThirdPost
+      responses:
+        '200':
+          description: OK
+  /play:
+    get:
+      tags: [play]
+      operationId: playIndex
+      responses:
+        '200':
+          description: OK
+  /play/post:
+    post:
+      tags: [play]
+      operationId: playIndexPost
+      responses:
+        '200':
+          description: OK
+  /api/greeting:
+    post:
+      tags: [spark]
+      operationId: greeting
+      summary: Greet a person
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Greeting'
+  /api/hostname:
+    get:
+      tags: [spark]
+      operationId: hostname
+      responses:
+        '200':
+          description: OK
+  /api/random/city:
+    get:
+      tags: [spark]
+      operationId: randomCity
+      responses:
+        '200':
+          description: OK
+  /api/random/number:
+    get:
+      tags: [spark]
+      operationId: randomNumber
+      responses:
+        '200':
+          description: OK
+  /api/random/uuid:
+    get:
+      tags: [spark]
+      operationId: randomUuid
+      responses:
+        '200':
+          description: OK
+  /status:
+    get:
+      tags: [spark]
+      operationId: status
+      summary: Service status
+      responses:
+        '200':
+          description: OK
